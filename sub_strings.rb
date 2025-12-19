@@ -1,15 +1,17 @@
 def sub_strings(string, dictionary)
-  string_downcase = string.downcase
+  string_array = string.downcase.split(/\W+/)
 
   dictionary.reduce(Hash.new(0)) do |count, word| 
-    matches = string_downcase.scan(word).length
+    string_array.each do |string| 
+      matches = string.scan(word).length
 
-    count[word] = matches if matches > 0
+      count[word] = matches if matches > 0
+    end
     count
   end
+
 end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-puts sub_strings("below", dictionary)
-
+puts sub_strings("Howdy partner, sit down! How's it going?", dictionary)
